@@ -1,0 +1,286 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MyTravels.API</name>
+    </assembly>
+    <members>
+        <member name="T:MyTravels.API.Controllers.AuthenticationController">
+            <summary>
+            Authentication with access token 
+            </summary>
+        </member>
+        <member name="T:MyTravels.API.Controllers.MediaController">
+            <summary>
+            Access media containing info about photos and movies
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.#ctor(Microsoft.Extensions.Logging.ILogger{MyTravels.API.Controllers.MediaController},MyTravels.API.Services.ITravelsRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for Media controller
+            </summary>
+            <param name="logger"></param>
+            <param name="travelsRepository"></param>
+            <param name="mapper">Automapper instance</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.GetAllMedia(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Get a range or all media (if not including some filtering or searching)
+            </summary>
+            <param name="name">Search for media with specific name</param>
+            <param name="searchQuery">Search for media which include text from name or description</param>
+            <param name="pageNumber">Specify page</param>
+            <param name="pageSize">Specify page size</param>
+            <returns>List of media</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.GetMediaFromTravel(System.Int32)">
+            <summary>
+            Get a list of media from a specific travel
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <returns>List of media</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.GetMedia(System.Int32)">
+            <summary>
+            Get specific media
+            </summary>
+            <param name="mediaId">Media ID</param>
+            <returns>Media</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.GetMediaWithTravel(System.Int32,System.Int32)">
+            <summary>
+            Get specific media
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <returns>Media</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.CreateMediaWithTravel(System.Int32,MyTravels.API.Models.MediaForCreationDto)">
+            <summary>
+            Create new media which belong to a travel.
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="media">Media for creation Data Transfer Object (MediaForCreationDto)</param>
+            <returns>API call to access newly created instance</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.CreateMedia(MyTravels.API.Models.MediaForCreationDto)">
+            <summary>
+            Create new media which do not belong to a travel.
+            </summary>
+            <param name="media">Media for creation Data Transfer Object (MediaForCreationDto)</param>
+            <returns>API call to access newly created instance</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.UpdateMedia(System.Int32,System.Int32,MyTravels.API.Models.MediaForUpdateDto)">
+            <summary>
+            Udpate media with full update
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <param name="media">Media to update to</param>
+            <returns>No content (204)</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.PartiallyUpdateMedia(System.Int32,System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{MyTravels.API.Models.MediaForUpdateDto})">
+            <summary>
+            Partially update media with JsonPatchDocument
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <param name="patchDocument"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.MediaController.DeleteMedia(System.Int32,System.Int32)">
+            <summary>
+            Delete media
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <returns></returns>
+        </member>
+        <member name="T:MyTravels.API.AddControllers.TravelController">
+            <summary>
+            Access travel info at high level -
+            Get Travels, specific travel or create a travel
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.#ctor(Microsoft.Extensions.Logging.ILogger{MyTravels.API.AddControllers.TravelController},MyTravels.API.Services.IMailService,MyTravels.API.Services.ITravelsRepository,AutoMapper.IMapper)">
+            <summary>
+            Constructor for Travel controller
+            </summary>
+            <param name="logger">External logger</param>
+            <param name="mailService">Imaginary MailService</param>
+            <param name="travelsRepository"></param>
+            <param name="mapper">Automapper instance</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.GetTravels(System.Boolean,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Fetch travel info for all your travels (if not including some filtering or searching)
+            </summary>
+            <param name="includeSubTravels">Include subtravels</param>
+            <param name="name">Search for travel with specific name</param>
+            <param name="searchQuery">Search for travels which include text from name or description</param>
+            <param name="pageNumber">Specify page</param>
+            <param name="pageSize">Specify page size</param>
+            <returns>List of multiple travels</returns>
+        </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.GetTravel(System.Int32,System.Boolean)">
+            <summary>
+            Get specific travel info
+            </summary>
+            <param name="id">Travel id</param>
+            <param name="includeSubTravels">Include subtravels</param>
+            <returns>Info about specific travel</returns>
+            <response code="200">Returns the requested travel</response>
+        </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.CreateTravel(MyTravels.API.Models.TravelForCreationDto)">
+            <summary>
+            Create a new travel with a TravelForCreation DTO
+            </summary>
+            <param name="travel">TravelForCreationDto specifying a new travel</param>
+            <returns>Call to get the newly created travel</returns>
+        </member>
+        <member name="T:MyTravels.API.Models.TravelDto">
+            <summary>
+            A DTO for a travel
+            </summary>
+        </member>
+        <member name="P:MyTravels.API.Models.TravelDto.Id">
+            <summary>
+            The id of the travel
+            </summary>
+        </member>
+        <member name="P:MyTravels.API.Models.TravelDto.Name">
+            <summary>
+            The name of the travel
+            </summary>
+        </member>
+        <member name="P:MyTravels.API.Models.TravelDto.Description">
+            <summary>
+            Description of the travel
+            </summary>
+        </member>
+        <member name="T:MyTravels.API.Services.ITravelsRepository">
+            <summary>
+            Repository accessing info for travel and media
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetTravelsAsync(System.Boolean,System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Get a range or all of travels, splitted up in pages
+            </summary>
+            <param name="includeSubTravels">Include sub travels in list</param>
+            <param name="name">Search for specific name</param>
+            <param name="searchQuery">Search for text in name or description</param>
+            <param name="pageNumber">Page number</param>
+            <param name="pageSize">Page size</param>
+            <returns>A list of travels</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetTravelAsync(System.Int32,System.Boolean)">
+            <summary>
+            Get specific travel
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="includeSubTravels">Include sub travels</param>
+            <returns>Specific travel</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.TravelExistsAsync(System.Int32)">
+            <summary>
+            Helper function. Does travel exist?
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.AddTravelAsync(MyTravels.API.Entities.Travel)">
+            <summary>
+            Add travel to repository
+            </summary>
+            <param name="travel">Travel entity</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.DeleteTravel(System.Int32)">
+            <summary>
+            Delete travel from repository
+            </summary>
+            <param name="travel">Travel entity</param>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaAsync(System.String,System.String,System.Int32,System.Int32)">
+            <summary>
+            Get a range or all of media, splitted up in pages
+            </summary>
+            <param name="name">Search for specific name</param>
+            <param name="searchQuery">Search for text in name</param>
+            <param name="pageNumber">Page number</param>
+            <param name="pageSize">Page size</param>
+            <returns>A list of media</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaAsync(System.Int32)">
+            <summary>
+            Get specific media
+            </summary>
+            <param name="mediaId">Media ID</param>
+            <returns>Media entity</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaAsync(System.Int32,System.Int32)">
+            <summary>
+            Get specific media
+            </summary>
+            <param name="traveliId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <returns>Media entity</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaFromTravelAsync(System.Int32)">
+            <summary>
+            Get all media for specific travel
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <returns>List of media</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.AddMediaAsync(MyTravels.API.Entities.Media)">
+            <summary>
+            Add media for travel
+            </summary>
+            <param name="media">Media entity</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.AddMediaForTravelAsync(System.Int32,MyTravels.API.Entities.Media)">
+            <summary>
+            Add media for travel
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="media">Media entity</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.MediaExistsAsync(System.Int32,System.Int32)">
+            <summary>
+            Helper function. Does media exist?
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <param name="mediaId">Media ID</param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.DeleteMedia(MyTravels.API.Entities.Media)">
+            <summary>
+            Delete media from repository
+            </summary>
+            <param name="mediaId">Media entity</param>
+        </member>
+        <member name="M:MyTravels.API.Services.ITravelsRepository.SaveChangesAsync">
+            <summary>
+            Save changes to repository
+            </summary>
+            <returns>Did it succeed?</returns>
+        </member>
+        <member name="T:MyTravels.API.Services.TravelsEfRepository">
+            <summary>
+            Implementation of repository interface for Entity Framework
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Services.TravelsEfRepository.#ctor(MyTravels.API.DbContexts.TravelContext)">
+            <summary>
+            Constructor of EF context
+            </summary>
+            <param name="context">EF context</param>
+            <exception cref="T:System.ArgumentNullException">context is invalid</exception>
+        </member>
+    </members>
+</doc>
