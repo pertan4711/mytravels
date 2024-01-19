@@ -12,25 +12,24 @@ const Display = (props) => {
   return <div>{props.message}</div>;
 };
 
-// Anropa githubs API med asynkront anrop
-const hamta = async () => {
-  const resp = await fetch("https://api.github.com");
-  const data = await resp.json();
-  console.log(data);
-};
+// Anropa github API med asynkront anrop
+// const hamta = async () => {
+//   const resp = await fetch("https://api.github.com");
+//   const data = await resp.json();
+//   console.log(data);
+// };
 
 function ShowButtons({ buttonNumbers }) {
   const [counter, setCounter] = useState(42);
-  hamta();
+  //hamta();
   const incrementCounter = (incr) => setCounter(counter + incr);
   return (
     <div>
       {buttonNumbers.map(number => 
-          <Button onClickFunction={number} increment={number} />
+          <Button key={'buttonkey-'+number} onClickFunction={incrementCounter} increment={number} />
           )
       }
-
-      <Display message={counter} />
+      <Display key={counter} message={counter} />
     </div>
   );
 }
