@@ -129,8 +129,8 @@
             </summary>
             <param name="id">Travel id</param>
             <param name="includeSubTravels">Include subtravels</param>
-            <returns>Info about specific travel</returns>
             <response code="200">Returns the requested travel</response>
+            <returns>Info about specific travel</returns>
         </member>
         <member name="M:MyTravels.API.AddControllers.TravelController.CreateTravel(MyTravels.API.Models.TravelForCreationDto)">
             <summary>
@@ -138,6 +138,13 @@
             </summary>
             <param name="travel">TravelForCreationDto specifying a new travel</param>
             <returns>Call to get the newly created travel</returns>
+        </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.DeleteTravel(System.Int32)">
+            <summary>
+            Delete a travel
+            </summary>
+            <param name="travelId">Travel ID</param>
+            <returns>NoContent</returns>
         </member>
         <member name="T:MyTravels.API.Models.TravelDto">
             <summary>

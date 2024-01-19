@@ -13,7 +13,7 @@ namespace MyTravels.API.AddControllers
     /// Get Travels, specific travel or create a travel
     /// </summary>
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [ApiVersion("0.1")]
     [Route("api/v{version:apiVersion}/travels")]
     public class TravelController : ControllerBase
@@ -75,6 +75,9 @@ namespace MyTravels.API.AddControllers
             // Header including pagination info
             Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
+            // Relaxation of CORS
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
             if (includeSubTravels)
             {
                 return Ok(_mapper.Map<IEnumerable<TravelDto>>(travels));
@@ -89,8 +92,8 @@ namespace MyTravels.API.AddControllers
         /// </summary>
         /// <param name="id">Travel id</param>
         /// <param name="includeSubTravels">Include subtravels</param>
-        /// <returns>Info about specific travel</returns>
         /// <response code="200">Returns the requested travel</response>
+        /// <returns>Info about specific travel</returns>
         [HttpGet("{id}", Name = "GetTravel")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -139,6 +142,11 @@ namespace MyTravels.API.AddControllers
         }
 
 
+        /// <summary>
+        /// Delete a travel
+        /// </summary>
+        /// <param name="travelId">Travel ID</param>
+        /// <returns>NoContent</returns>
         [HttpDelete]
         public async Task<ActionResult> DeleteTravel(int travelId)
         {

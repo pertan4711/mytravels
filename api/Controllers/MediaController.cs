@@ -13,7 +13,7 @@ namespace MyTravels.API.Controllers
     /// Access media containing info about photos and movies
     /// </summary>
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [ApiVersion("0.1")]
     [ApiVersion("0.2")]
     [Route("api/v{version:apiVersion}")]

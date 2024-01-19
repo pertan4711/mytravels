@@ -6,7 +6,7 @@ using MyTravels.API.Services;
 namespace MyTravels.API.Controllers
 {
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [ApiVersion("0.1")]
     [Route("api/v{version:apiVersion}/file")]
     public class FileController : ControllerBase
