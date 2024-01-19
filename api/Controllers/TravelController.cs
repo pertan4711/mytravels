@@ -108,6 +108,9 @@ namespace MyTravels.API.AddControllers
                 return NotFound();
             }
 
+            // Relaxation of CORS
+            Response.Headers.Add("Access-Control-Allow-Origin", "*");
+
             if (includeSubTravels)
             {
                 return Ok(_mapper.Map<TravelDto>(travel));

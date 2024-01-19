@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyTravels.API.Entities;
 
 namespace MyTravels.API.Services
@@ -36,7 +38,10 @@ namespace MyTravels.API.Services
 
         public Task<Travel?> GetTravelAsync(int travelId, bool includeSubTravels)
         {
-            throw new NotImplementedException();
+            var travel = TravelsDataStore.Current.Travels
+                .Where(t => t.Id == travelId)
+                .FirstOrDefault();
+            return Task.FromResult(travel);
         }
 
         public Task AddTravelAsync(Travel travel)

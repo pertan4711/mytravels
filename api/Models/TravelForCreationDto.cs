@@ -14,8 +14,7 @@ namespace MyTravels.API.Models
         public DateTime? Start { get; set; }
         public DateTime? End { get; set; }
 
-        public List<MediaDto>? Media { get; set; }
-
-        public List<TravelDto>? SubTravel { get; set; }
+        public ICollection<TravelDto>? SubTravels { get; set; } = new List<TravelDto>();
+        public ICollection<MediaDto>? Media { get; set; } = new List<MediaDto>();
     }
 }

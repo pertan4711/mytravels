@@ -16,7 +16,7 @@ namespace MyTravels.API.Entities
 
         [ForeignKey("TravelId")]
         public int? TravelId { get; set; }
-        public Travel? Travel { get; set; }
+        public Travel? MasterTravel { get; set; }
 
 
         [MaxLength(2000)]

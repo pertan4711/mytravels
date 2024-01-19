@@ -30,7 +30,15 @@ namespace MyTravels.API
                                 {
                                     Id = 1,
                                     Type = "jpeg",
-                                    Url = "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0017.jpg"
+                                    Url = "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0017.jpg",
+                                    TravelId = 1,
+                                },
+                                new Media("Dsc345")
+                                {
+                                    Id = 10,
+                                    Type = "jpeg",
+                                    Url = "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0018.jpg",
+                                    TravelId = 1,
                                 }
                             }
                         },

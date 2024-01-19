@@ -14,15 +14,17 @@ namespace MyTravels.API.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [MaxLength(2000)]
+        public string? Description { get; set; }
+
 
         [ForeignKey("TravelId")]
         public int? TravelId { get; set; }
         public Travel? MasterTravel { get; set; }
         public List<Travel> SubTravels { get; set; } = new List<Travel>();
 
+        public List<Media> Media { get; set; } = new List<Media>();
 
-        [MaxLength(2000)]
-        public string? Description { get; set; }
 
         private DateTime? _Start;
         private DateTime? _End;
@@ -99,8 +101,6 @@ namespace MyTravels.API.Entities
             }
             return null;
         }
-
-        public List<Media> Media { get; set; } = new List<Media>();
 
         public Travel(string name)
         {
