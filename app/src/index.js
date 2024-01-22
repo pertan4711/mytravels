@@ -1,24 +1,26 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
-import ShowButtons from "./incrementCounter/ShowButtons";
-import GithubCards from "./githubCards/GithubCards";
-import ConditionalStyle from "./conditionalStyle/ConditionalStyle";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GettingStarted from "./gettingStarted/GettingStarted";
 import MyTravels from "./myTravels/MyTravels";
+import NoPage from "./NoPage";
+import Navbar from "./Navbar";
+import Home from "./Home";
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Home />} />
+          <Route path="gettingstarted" element={<GettingStarted />} />
+          <Route path="myTravels" element={<MyTravels />} />
+          <Route path="*" element={<NoPage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  );
+}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-root.render(
-  <>
-    <h1>Getting started - Samer Buna</h1>
-    <h3>GithubCards</h3>
-    <GithubCards />
-    <hr />
-    <h3>ShowButtons</h3>
-    <ShowButtons buttonNumbers={[1, 2, 5, 10, 20]} />
-    <hr />
-    <h3>ConditionalStyle</h3>
-    <ConditionalStyle />
-    <hr />
-    <h1>MyTravels</h1>
-    <MyTravels />
-  </>
-);
+root.render(<App />);

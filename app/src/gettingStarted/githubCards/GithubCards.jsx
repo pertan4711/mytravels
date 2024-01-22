@@ -32,7 +32,7 @@ class GithubCards extends React.Component {
   render() {
     return (
       <div>
-        <div className="header">{this.props.title}</div>
+        {/* <div className="header">{this.props.title}</div> */}
         <FormState onSubmit={this.addNewProfile} />
         <CardList profiles={this.state.profiles} />
       </div>

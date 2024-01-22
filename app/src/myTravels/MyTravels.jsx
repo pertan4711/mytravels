@@ -1,57 +1,6 @@
 import axios from "axios";
-import React, { useState } from "react";
-
-const testTravels = [
-  {
-    id: 1, 
-    name: "Maldiverna_2021", 
-    description: "Dykning och Amari Havodda i Maldiverna 2021",
-    media: [],
-    subTravels: [
-      {
-        id: 2,
-        name: "Amari Havodda",
-        description: "Hotellö i Maldiverna med ett fint husrev",
-        start: "2021-02-10",
-        end: "2021-02-17",
-        media: [
-          {
-            id: 1,
-            type: "jpeg",
-            name: "IMG-20210215-WA0017",
-            url: "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0017.jpg"
-          }
-        ],
-        subTravels: []
-      },
-      {
-        id: 3,
-        name: "Maldives Current Dives",
-        description: "Dykning i södra Maldiverna ofta i strömstarka kanaler",
-        start: "2021-02-17",
-        end: "2021-02-22",
-        media: [
-          {
-            id: 2,
-            type: "jpeg",
-            name: "IMG-20210215-WA0018",
-            url: "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0018.jpg"
-          }
-        ],
-        subTravels: []
-      },
-    ]
-  },
-  {
-    id: 10,
-    name: "Rom_2021",
-    description: "Höstresa till Rom",
-    start: "2021-09-16",
-    end: "2021-09-20",
-    media: [],
-    subTravels: []
-  }
-]
+import React from "react";
+import testTravels from "./testTravel";
 
 const Travels = async () => {
   const resp = await axios.get('https://localhost:4711/api/v0.1/Travels'); 
@@ -64,7 +13,6 @@ const Travels = async () => {
 
 const TravelList = (props) => {
   console.log(props);
-  debugger;
   return(
     <div>
       {props.travels.map((travel) => <TravelInfo key={travel.id} {...travel} />)}
@@ -121,7 +69,7 @@ class Form extends React.Component {
         <button>Travel ID</button>
       </form>
     )
-  };
+  }
 }
 
 class MyTravels extends React.Component {
@@ -137,7 +85,7 @@ class MyTravels extends React.Component {
     return (
       <div>
         <div className="header">Denna app visar info om resor.</div>
-        <Travels />
+        <TravelList travels={testTravels} />
         <Form onSubmit={this.addNewTravel} />
         <TravelList travels={this.state.travels} />
       </div>
