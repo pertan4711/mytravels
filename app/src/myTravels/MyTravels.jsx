@@ -2,17 +2,18 @@ import axios from "axios";
 import React from "react";
 import testTravels from "./testTravel";
 
-const Travels = async () => {
-  const resp = await axios.get('https://localhost:4711/api/v0.1/Travels'); 
-  return (
-    <div>
-      <TravelList {...resp.data} />
-    </div>
-  )
-}
+
+// const getTravels = async () => {
+//   const resp = await axios.get('https://localhost:4711/api/v0.1/Travels'); 
+//    return (
+//      <div>
+//        <TravelList {...resp.data} />
+//      </div>
+//    )
+// }
 
 const TravelList = (props) => {
-  console.log(props);
+  //console.log(props);
   return(
     <div>
       {props.travels.map((travel) => <TravelInfo key={travel.id} {...travel} />)}
@@ -86,10 +87,11 @@ class MyTravels extends React.Component {
       <div>
         <div className="header">Denna app visar info om resor.</div>
         <TravelList travels={testTravels} />
+        {/* <TravelList props={getTravels()} /> */}
         <Form onSubmit={this.addNewTravel} />
         <TravelList travels={this.state.travels} />
       </div>
-      );
+    );
   }
 }
 
