@@ -5,6 +5,9 @@ using MyTravels.API.Services;
 
 namespace MyTravels.API.Controllers
 {
+    /// <summary>
+    /// Return a file
+    /// </summary>
     [ApiController]
     [Authorize]
     [ApiVersion("0.1")]
@@ -14,6 +17,14 @@ namespace MyTravels.API.Controllers
         private readonly FileExtensionContentTypeProvider _fileExtensionContentTypeProvider;
         private readonly ITravelsRepository _travelsRepository;
 
+
+        /// <summary>
+        /// Constructor need type provider and repo
+        /// </summary>
+        /// <param name="fileExtensionContentTypeProvider"></param>
+        /// <param name="travelsRepository"></param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <exception cref="ArgumentNullException"></exception>
         public FileController(
             FileExtensionContentTypeProvider fileExtensionContentTypeProvider,
             ITravelsRepository travelsRepository
@@ -23,6 +34,12 @@ namespace MyTravels.API.Controllers
             _travelsRepository = travelsRepository ?? throw new ArgumentNullException(nameof(travelsRepository));
         }
 
+
+        /// <summary>
+        /// Return a media file
+        /// </summary>
+        /// <param name="mediaId">ID for media</param>
+        /// <returns>File content</returns>
         [HttpGet("{mediaId}")]
         public async Task<ActionResult> GetFile(int mediaId)
         {

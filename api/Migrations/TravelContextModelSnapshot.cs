@@ -45,7 +45,7 @@ namespace MyTravels.API.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Media");
+                    b.ToTable("Media", (string)null);
 
                     b.HasData(
                         new
@@ -94,7 +94,7 @@ namespace MyTravels.API.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Travels");
+                    b.ToTable("Travels", (string)null);
 
                     b.HasData(
                         new

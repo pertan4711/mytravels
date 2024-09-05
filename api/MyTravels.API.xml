@@ -9,6 +9,27 @@
             Authentication with access token 
             </summary>
         </member>
+        <member name="T:MyTravels.API.Controllers.FileController">
+            <summary>
+            Return a file
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Controllers.FileController.#ctor(Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,MyTravels.API.Services.ITravelsRepository)">
+            <summary>
+            Constructor need type provider and repo
+            </summary>
+            <param name="fileExtensionContentTypeProvider"></param>
+            <param name="travelsRepository"></param>
+            <exception cref="T:System.ArgumentException"></exception>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:MyTravels.API.Controllers.FileController.GetFile(System.Int32)">
+            <summary>
+            Return a media file
+            </summary>
+            <param name="mediaId">ID for media</param>
+            <returns>File content</returns>
+        </member>
         <member name="T:MyTravels.API.Controllers.MediaController">
             <summary>
             Access media containing info about photos and movies
