@@ -180,6 +180,26 @@
             Description of the travel
             </summary>
         </member>
+        <member name="T:MyTravels.API.Profiles.MediaProfile">
+            <summary>
+            Automappers configuration file for Media
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Profiles.MediaProfile.#ctor">
+            <summary>
+            All mapping constructs have to be initiated in the constructor
+            </summary>
+        </member>
+        <member name="T:MyTravels.API.Profiles.TravelsProfile">
+            <summary>
+            Automappers configuration file for Travels
+            </summary>
+        </member>
+        <member name="M:MyTravels.API.Profiles.TravelsProfile.#ctor">
+            <summary>
+            All mapping constructs have to be initiated in the constructor
+            </summary>
+        </member>
         <member name="T:MyTravels.API.Services.ITravelsRepository">
             <summary>
             Repository accessing info for travel and media

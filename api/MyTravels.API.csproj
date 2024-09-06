@@ -11,6 +11,14 @@
 	<UserSecretsId>26712a2f-738b-4b27-946c-e31636c205b0</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Entities\SubTravel.cs" />
     <Compile Remove="Models\SubTravelDto.cs" />
