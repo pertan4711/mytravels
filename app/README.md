@@ -19,4 +19,9 @@ Samer goes through some important concepts and examples in React.
 - Star Match game
 - Local development environment
 
-## My Travel - Clone of Kevin Docxs API
+## My Travel - Clone of Kevin Docxs API, Pluralsight course "ASP.NET Core Web API Fundamentals"
+Rest-API
+.NET8
+Pagination, searching
+Security
+Async calls
