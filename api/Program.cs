@@ -19,6 +19,17 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseSerilog();
 
+string mySpecificOrigins = "_localhost";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: mySpecificOrigins,
+        policy =>
+        {
+            policy.WithOrigins("http://localhost");
+        });
+});
+
 // Add services to the container.
 builder.Services.AddControllers(op =>
 {
@@ -114,6 +125,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
+
+app.UseCors(mySpecificOrigins);
 
 app.UseAuthentication();
 app.UseAuthorization();
