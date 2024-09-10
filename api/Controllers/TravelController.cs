@@ -22,7 +22,7 @@ namespace MyTravels.API.AddControllers
         private readonly IMailService _mailService;
         private readonly ITravelsRepository _travelsRepository;
         private readonly IMapper _mapper;
-        const int maxTravelsPageSize = 10;
+        const int maxTravelsPageSize = 100;
 
 
         /// <summary>
@@ -73,8 +73,8 @@ namespace MyTravels.API.AddControllers
                 await _travelsRepository.GetTravelsAsync(includeSubTravels, name, searchQuery, pageNumber, pageSize);
 
             // Header including pagination info
-            Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
-
+            Response.Headers.Append("Access-Control-Allow-Origin", "*");
+            Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
             if (includeSubTravels)
             {
                 return Ok(_mapper.Map<IEnumerable<TravelDto>>(travels));

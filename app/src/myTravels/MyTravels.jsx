@@ -2,7 +2,6 @@ import axios from "./axios";
 import React, { useState, useEffect } from "react";
 //import testTravels from "./testTravel";
 
-
 const TravelList = ({fetchUrl}) => {
   const [travels, setTravels] = useState([]);
 
@@ -86,12 +85,22 @@ class MyTravels extends React.Component {
       travels: [...prevState.travels, travelData],
     }));
   };
+  includeSubTravels = false;
+  fetchUrl = 'travels?includeSubTravels=true';
+
   render() {
     return (
       <div>
         <div className="header">Denna app visar info om resor.</div>
+        <div>
+          <input id="cbIncludeSubs" type="checkbox" value={this.includeSubTravels} onChange={(e) => {
+            this.includeSubTravels = e.target.checked;
+            this.fetchUrl = 'travels?includeSubTravels=' + e.target.checked; 
+            }} />
+          <label htmlFor="cbIncludeSubs">Inkludera delresor</label>
+        </div>
         {/* <TravelList travels={testTravels} /> */}
-        <TravelList fetchUrl='travels?includeSubTravels=true' />
+        <TravelList fetchUrl={this.fetchUrl} />
         <Form onSubmit={this.addNewTravel} />
       </div>
     );
