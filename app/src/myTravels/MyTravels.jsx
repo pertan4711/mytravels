@@ -1,21 +1,7 @@
 import axios from "./axios";
 import React, { useState, useEffect } from "react";
-//import testTravels from "./testTravel";
 
-const TravelList = ({fetchUrl}) => {
-  const [travels, setTravels] = useState([]);
-
-  useEffect(() => {
-    async function fetchData() {
-      const resp = await axios.get(fetchUrl);
-      setTravels(resp.data);
-      return resp;
-    }
-    fetchData();
-  }, [fetchUrl]);
-
-  console.log(travels);
-
+const TravelList = ({ travels }) => {
   return (
     <div>
       {travels && travels.map((travel) => <TravelInfo key={travel.id} {...travel} />)}
@@ -29,82 +15,60 @@ const TravelInfo = (travel) => {
     <div className="github-profile">
       {/* <img src={travel.media} /> */}
       <div className="info">
-        <div key={'name' + travel.id} className="name">{travel.name}</div>
-        <div key={'desc' + travel.id} className="description">{travel.description}</div>
-        {travel.start && <div key={'start' + travel.id}>start: {travel.start}</div>}
-        {travel.end && <div key={'end' + travel.id}>end  : {travel.end}</div>}
-        {travel.media.map(media => (
+        <div className="name">{travel.name}</div>
+        <div className="description">{travel.description}</div>
+        {travel.start && <div>start: {travel.start}</div>}
+        {travel.end && <div>end  : {travel.end}</div>}
+        {travel.media && travel.media.map(media => (
           <div key={'media' + travel.id + ':' + media.id}>
             media : {media.name}
           </div>
         ))}
         {travel.subTravels &&
-          <ul>
-            {travel.subTravels.map(sub => (
-              <li key={'sub' + travel.id + ':' + sub.id}>{sub.name}</li>
-            ))}
-          </ul>
+          <>
+            <div className="">Innehåller delresor:</div>
+            <ul>
+              {travel.subTravels.map(sub => (
+                <li key={'sub' + travel.id + ':' + sub.id}>{sub.name}</li>
+              ))}
+            </ul>
+          </>
         }
       </div>
     </div>
   )
 };
 
-class Form extends React.Component {
-  state = { travelId: '' };
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    const resp = await axios.get(
-      `https://localhost:4711/api/v0.1/Travels/${this.state.travelId}?includeSubTravels=true`
-    );
-    //console.log(resp.data);
-    this.props.onSubmit(resp.data);
-    this.setState({ travelId: '' });
-  }
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.travelId}
-          onChange={event => this.setState({ travelId: event.target.value })}
-          placeholder="Enter Travel ID"
-        />
-        <button>Travel ID</button>
-      </form>
-    )
-  }
-}
+const MyTravels = () => {
+  const [travels, setTravels] = useState([]);
+  const [fetchUrl, setFetchUrl] = useState('travels?includeSubTravels=false');
 
-class MyTravels extends React.Component {
-  state = {
-    travels: [],
-  };
-  addNewTravel = (travelData) => {
-    this.setState((prevState) => ({
-      travels: [...prevState.travels, travelData],
-    }));
-  };
-  includeSubTravels = false;
-  fetchUrl = 'travels?includeSubTravels=true';
+  useEffect(() => {
+    async function fetchData() {
+      const resp = await axios.get(fetchUrl);
+      setTravels(resp.data);
+      return resp;
+    }
+    fetchData();
+  }, [fetchUrl]);
 
-  render() {
-    return (
-      <div>
-        <div className="header">Denna app visar info om resor.</div>
-        <div>
-          <input id="cbIncludeSubs" type="checkbox" value={this.includeSubTravels} onChange={(e) => {
-            this.includeSubTravels = e.target.checked;
-            this.fetchUrl = 'travels?includeSubTravels=' + e.target.checked; 
-            }} />
-          <label htmlFor="cbIncludeSubs">Inkludera delresor</label>
-        </div>
-        {/* <TravelList travels={testTravels} /> */}
-        <TravelList fetchUrl={this.fetchUrl} />
-        <Form onSubmit={this.addNewTravel} />
+  // const addNewTravel = (newTravelData) => {
+  //   setTravels([...travels, newTravelData]);
+  // }
+
+  return (
+    <div>
+      <div className="header">Denna app visar info om resor.</div>
+      <div className="form-check">
+        <input id="cbIncludeSubs" type="checkbox" className="form-check-input" onChange={(e) => {
+          setFetchUrl('travels?includeSubTravels=' + e.target.checked);
+        }} />
+        <label className="form-check-label" htmlFor="cbIncludeSubs">Inkludera delresor</label>
       </div>
-    );
-  }
+      <TravelList travels={travels} />
+      {/* <TravelForm onSubmit={addNewTravel} /> */}
+    </div>
+  );
 }
 
 export default MyTravels;

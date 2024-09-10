@@ -75,6 +75,7 @@ namespace MyTravels.API.AddControllers
             // Header including pagination info
             Response.Headers.Append("Access-Control-Allow-Origin", "*");
             Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+            
             if (includeSubTravels)
             {
                 return Ok(_mapper.Map<IEnumerable<TravelDto>>(travels));
