@@ -4,15 +4,15 @@ import { Outlet, Link } from "react-router-dom";
 const Navbar = () => {
   return (
     <>
-      <nav>
-        <ul>
-          <li>
+      <nav className="mb-5">
+        <ul className="breadcrumb">
+          <li className="breadcrumb-item">
             <Link to="/">Home</Link>
           </li>
-          <li>
+          <li className="breadcrumb-item">
             <Link to="/gettingStarted">Getting Started</Link>
           </li>
-          <li>
+          <li className="breadcrumb-item">
             <Link to="/myTravels">My Travels</Link>
           </li>
         </ul>

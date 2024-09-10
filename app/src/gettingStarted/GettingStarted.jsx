@@ -3,9 +3,11 @@ import ShowButtons from "./incrementCounter/ShowButtons";
 import GithubCards from "./githubCards/GithubCards";
 import ConditionalStyle from "./conditionalStyle/ConditionalStyle";
 import StarMatch from "./startMatchGame/StarMatch";
+import MathMLTutorial from "./mathML/MathElement";
 
 const GettingStarted = () => {
-    return (
+  return (
+    <>
       <div>
         <h1>Getting started - Samer Buna</h1>
         <h3>GithubCards</h3>
@@ -20,7 +22,12 @@ const GettingStarted = () => {
         <h3>Star Match Game</h3>
         <StarMatch />
       </div>
-    );
+      <hr />
+      <div>
+        <MathMLTutorial />
+      </div>
+    </>
+  );
 }
 
 export default GettingStarted;
