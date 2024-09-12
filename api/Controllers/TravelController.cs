@@ -13,7 +13,7 @@ namespace MyTravels.API.AddControllers
     /// Get Travels, specific travel or create a travel
     /// </summary>
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [ApiVersion("0.1")]
     [Route("api/v{version:apiVersion}/travels")]
     public class TravelController : ControllerBase
