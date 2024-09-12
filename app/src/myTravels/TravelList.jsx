@@ -6,7 +6,7 @@ const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => 
       {travels &&
         listStyle &&
         travels.map((travel) => (
-          <TravelInfo key={travel.id} {...travel} />
+          <TravelText key={travel.id} {...travel} />
         ))}
 
       {travels && !listStyle && includeSubTravels && (
@@ -69,7 +69,7 @@ const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => 
   );
 };
 
-const TravelInfo = (travel) => {
+const TravelText = (travel) => {
   return (
     <div className="col-md-4 mb-5">
       <h4>

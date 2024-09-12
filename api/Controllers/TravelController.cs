@@ -100,6 +100,8 @@ namespace MyTravels.API.AddControllers
         {
             var travel = await _travelsRepository.GetTravelAsync(id, includeSubTravels);
 
+            Response.Headers.Append("Access-Control-Allow-Origin", "*");
+
             if (travel == null)
             {
                 _logger.LogInformation($"Travel with id {id} wasn't found");

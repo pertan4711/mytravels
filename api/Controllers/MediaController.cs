@@ -13,7 +13,7 @@ namespace MyTravels.API.Controllers
     /// Access media containing info about photos and movies
     /// </summary>
     [ApiController]
-    [Authorize]
+    //[Authorize]
     [ApiVersion("0.1")]
     [ApiVersion("0.2")]
     [Route("api/v{version:apiVersion}")]
@@ -70,7 +70,8 @@ namespace MyTravels.API.Controllers
                     await _travelsRepository.GetMediaAsync(name, searchQuery, pageNumber, pageSize);
 
                 // Header including pagination info
-                Response.Headers.Add("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
+                Response.Headers.Append("Access-Control-Allow-Origin", "*");
+                Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
                 var mediaDto = _mapper.Map<IEnumerable<MediaDto>>(media);
 
@@ -94,6 +95,7 @@ namespace MyTravels.API.Controllers
         {
             try
             {
+                Response.Headers.Append("Access-Control-Allow-Origin", "*");
                 if (!await _travelsRepository.TravelExistsAsync(travelId))
                 {
                     _logger.LogInformation($"Travel with id {travelId} was not found when accessing media.");
@@ -101,7 +103,6 @@ namespace MyTravels.API.Controllers
                 }
                 
                 var media = await _travelsRepository.GetMediaFromTravelAsync(travelId);
-
                 var mediaDto = _mapper.Map<IEnumerable<MediaDto>>(media);
 
                 return Ok(mediaDto);
