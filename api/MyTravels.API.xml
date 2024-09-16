@@ -11,15 +11,16 @@
         </member>
         <member name="T:MyTravels.API.Controllers.FileController">
             <summary>
-            Return a file
+            Return a file. The route is set in header of class.
             </summary>
         </member>
-        <member name="M:MyTravels.API.Controllers.FileController.#ctor(Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,MyTravels.API.Services.ITravelsRepository)">
+        <member name="M:MyTravels.API.Controllers.FileController.#ctor(Microsoft.AspNetCore.StaticFiles.FileExtensionContentTypeProvider,MyTravels.API.Services.ITravelsRepository,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Constructor need type provider and repo
             </summary>
             <param name="fileExtensionContentTypeProvider"></param>
             <param name="travelsRepository"></param>
+            <param name="configuration"></param>
             <exception cref="T:System.ArgumentException"></exception>
             <exception cref="T:System.ArgumentNullException"></exception>
         </member>

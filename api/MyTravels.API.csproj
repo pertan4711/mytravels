@@ -22,6 +22,7 @@
   <ItemGroup>
     <Compile Remove="Entities\SubTravel.cs" />
     <Compile Remove="Models\SubTravelDto.cs" />
+    <Compile Remove="MyConfiguration.cs" />
     <Compile Remove="Profiles\SubTravelProfile.cs" />
   </ItemGroup>
 
