@@ -29,7 +29,14 @@
             Return a media file
             </summary>
             <param name="mediaId">ID for media</param>
-            <returns>File content</returns>
+            <returns>File content (image)</returns>
+        </member>
+        <member name="M:MyTravels.API.Controllers.FileController.GetFiles(System.Int32)">
+            <summary>
+            Return media files
+            </summary>
+            <param name="travelId">ID for travel</param>
+            <returns>File contents (images)</returns>
         </member>
         <member name="T:MyTravels.API.Controllers.MediaController">
             <summary>

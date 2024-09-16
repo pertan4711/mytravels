@@ -43,7 +43,7 @@ namespace MyTravels.API.Controllers
         /// Return a media file
         /// </summary>
         /// <param name="mediaId">ID for media</param>
-        /// <returns>File content</returns>
+        /// <returns>File content (image)</returns>
         [HttpGet("{mediaId}")]
         public async Task<ActionResult> GetFile(int mediaId)
         {
@@ -60,7 +60,7 @@ namespace MyTravels.API.Controllers
             {
                 if (!_fileExtensionContentTypeProvider.TryGetContentType(media.Url, out var contentType))
                 {
-                    contentType = "application/octet-stream";
+                    contentType = "application/octet-stream"; // catch all if contentTypeProvider cannot determine
                 }
 
                 var bytes = System.IO.File.ReadAllBytes(media.Url);
@@ -69,6 +69,43 @@ namespace MyTravels.API.Controllers
             }
 
             return NoContent();
+        }
+
+        /// <summary>
+        /// Return media files
+        /// </summary>
+        /// <param name="travelId">ID for travel</param>
+        /// <returns>File contents (images)</returns>
+        [HttpGet("travels/{travelId}/medias")]
+        public async Task<ActionResult> GetFiles(int travelId)
+        {
+            var medias = await _travelsRepository.GetMediaFromTravelAsync(travelId);
+
+            Response.Headers.Append("Access-Control-Allow-Origin", "*");
+
+            if (medias == null)
+            {
+                return NotFound();
+            }
+
+            var files = new List<FileContentResult>();
+            foreach (var media in medias)
+            {
+                if (media.Url != null)
+                {
+                    if (!_fileExtensionContentTypeProvider.TryGetContentType(media.Url, out var contentType))
+                    {
+                        contentType = "application/octet-stream";
+                    }
+
+                    var bytes = System.IO.File.ReadAllBytes(media.Url);
+
+                    var myFile = File(bytes, contentType, Path.GetFileName(media.Url));
+                    files.Add(myFile);
+                }
+            }
+
+            return Ok(files);
         }
     }
 }

@@ -167,13 +167,13 @@ namespace MyTravels.API.Services
             if (travel != null)
             {
                 var subTravelMedia = travel.SubTravels.SelectMany(m => m.Media);
-                var media = travel.Media.ToList();
-                media.AddRange(subTravelMedia);
+                var medias = travel.Media.ToList();
+                medias.AddRange(subTravelMedia);
 
-                return media;
+                return medias;
             }
 
-            return new List<Media>();
+            return [];
         }
 
 
