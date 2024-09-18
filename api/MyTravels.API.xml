@@ -31,7 +31,7 @@
             <param name="mediaId">ID for media</param>
             <returns>File content (image)</returns>
         </member>
-        <member name="M:MyTravels.API.Controllers.FileController.GetFiles(System.Int32)">
+        <member name="M:MyTravels.API.Controllers.FileController.GetFiles(System.Int32,System.Int32,System.Int32)">
             <summary>
             Return media files
             </summary>
@@ -277,11 +277,13 @@
             <param name="mediaId">Media ID</param>
             <returns>Media entity</returns>
         </member>
-        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaFromTravelAsync(System.Int32)">
+        <member name="M:MyTravels.API.Services.ITravelsRepository.GetMediaFromTravelAsync(System.Int32,System.Int32,System.Int32)">
             <summary>
             Get all media for specific travel
             </summary>
             <param name="travelId">Travel ID</param>
+            <param name="pageNumber">Page number</param>
+            <param name="pageSize">Page size</param>
             <returns>List of media</returns>
         </member>
         <member name="M:MyTravels.API.Services.ITravelsRepository.AddMediaAsync(MyTravels.API.Entities.Media)">

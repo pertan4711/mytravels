@@ -93,8 +93,12 @@ namespace MyTravels.API.Services
         /// Get all media for specific travel
         /// </summary>
         /// <param name="travelId">Travel ID</param>
+        /// <param name="pageNumber">Page number</param>
+        /// <param name="pageSize">Page size</param>
         /// <returns>List of media</returns>
-        Task<IEnumerable<Media>> GetMediaFromTravelAsync(int travelId);
+        Task<(IEnumerable<Media>, PaginationMetadata)> GetMediaFromTravelAsync(int travelId,
+            int pageNumber = 1,
+            int pageSize = 10);
 
         /// <summary>
         /// Add media for travel

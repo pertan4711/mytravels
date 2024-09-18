@@ -1,6 +1,15 @@
 import React from "react";
 
 const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => {
+
+  const countMedia = (travel) => {
+    let mediaCount = (travel.media != null) ? travel.media.length : 0;
+    travel.subTravels?.forEach(subTravel => {
+      mediaCount = mediaCount + subTravel.media.length;
+    }); 
+    return mediaCount;
+  }
+
   return (
     <div className="container-fluid row">
       {travels &&
@@ -20,6 +29,8 @@ const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => 
                 <th>Start</th>
                 <th>Slut</th>
                 <th>Delresor</th>
+                <th>Tillhör</th>
+                <th>Bilder</th>
               </tr>
             </thead>
             <tbody>
@@ -31,6 +42,8 @@ const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => 
                   <td>{t.start?.split("T")[0]}</td>
                   <td>{t.end?.split("T")[0]}</td>
                   <td>{t.subTravels?.length > 0 ? "Ja" : "Nej"}</td>
+                  <td>{t.travelId}</td>
+                  <td>{countMedia(t)}</td>
                 </tr>
               ))}
             </tbody>

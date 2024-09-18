@@ -1,0 +1,10 @@
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05893.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05936.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05948.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05963.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05969.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC05993.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC06065.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC06067.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC06069.JPG');
+insert into Media (TravelId, Description, Url) values (5, 'sql inserted', '\\pertanqnap\Multimedia\eget\2021\01 Maldiverna\RX100\bestof\DSC06071.JPG');

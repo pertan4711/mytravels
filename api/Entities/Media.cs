@@ -9,9 +9,9 @@ namespace MyTravels.API.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
+        //[Required]
+        //[MaxLength(50)]
+        //public string Name { get; set; }
 
 
         [ForeignKey("TravelId")]
@@ -25,9 +25,9 @@ namespace MyTravels.API.Entities
         public string? Url { get; set; }
         public string? Type { get; set; }
 
-        public Media(string name)
-        {
-            Name = name;
-        }
+        //public Media(string name)
+        //{
+        //    Name = name;
+        //}
     }
 }

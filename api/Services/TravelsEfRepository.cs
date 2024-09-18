@@ -121,24 +121,18 @@ namespace MyTravels.API.Services
             int pageSize = 10)
         {
             var media = _context.Media as IQueryable<Media>;
-            if (!string.IsNullOrWhiteSpace(name))
-            {
-                name = name.Trim();
-                media = media.Where(t => t.Name == name);
-            }
 
             if (!string.IsNullOrWhiteSpace(searchQuery))
             {
                 searchQuery = searchQuery.Trim();
-                media = media.Where(t => t.Name.Contains(searchQuery)
-                    || (t.Description != null && t.Description.Contains(searchQuery)));
+                media = media.Where(t => t.Description != null && t.Description.Contains(searchQuery));
             }
 
             var totalItemCount = await media.CountAsync();
             var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
 
             var mediaToReturn = await media
-                .OrderBy(t => t.Name)
+                .OrderBy(t => t.Id)
                 .Skip(pageSize * (pageNumber - 1))
                 .Take(pageSize)
                 .ToListAsync();
@@ -156,7 +150,9 @@ namespace MyTravels.API.Services
             return await _context.Media.FirstOrDefaultAsync(m => m.Id == mediaId && m.TravelId == travelId);
         }
 
-        public async Task<IEnumerable<Media>> GetMediaFromTravelAsync(int travelId)
+        public async Task<(IEnumerable<Media>, PaginationMetadata)> GetMediaFromTravelAsync(int travelId,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             var travel = await _context.Travels
                 .Where(t => t.Id == travelId)
@@ -166,14 +162,24 @@ namespace MyTravels.API.Services
 
             if (travel != null)
             {
+                var medias = travel.Media;
+                var totalItemCount = medias.Count();
+                
                 var subTravelMedia = travel.SubTravels.SelectMany(m => m.Media);
-                var medias = travel.Media.ToList();
                 medias.AddRange(subTravelMedia);
 
-                return medias;
+                var paginationMetadata = new PaginationMetadata(totalItemCount, pageSize, pageNumber);
+
+                var mediaToReturn = medias
+                    .OrderBy(m => m.Id)
+                    .Skip(pageSize * (pageNumber - 1))
+                    .Take(pageSize)
+                    .ToList();
+
+                return (mediaToReturn, paginationMetadata);
             }
 
-            return [];
+            return ([], new PaginationMetadata(0, pageSize, pageNumber));
         }
 
 

@@ -26,7 +26,7 @@ namespace MyTravels.API
                             End = new DateTime(2021, 2, 17),
                             Media = new List<Media>()
                             {
-                                new Media("Dsc344")
+                                new Media()
                                 {
                                     Id = 1,
                                     Type = "jpeg",
@@ -42,7 +42,7 @@ namespace MyTravels.API
                             End = new DateTime(2021, 2, 22),
                             Media = new List<Media>()
                             {
-                                new Media("Dsc3466")
+                                new Media()
                                 {
                                     Id = 2,
                                     Type = "jpeg",

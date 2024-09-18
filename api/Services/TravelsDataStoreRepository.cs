@@ -79,7 +79,9 @@ namespace MyTravels.API.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Media>> GetMediaFromTravelAsync(int travelId)
+        public Task<(IEnumerable<Media>, PaginationMetadata)> GetMediaFromTravelAsync(int travelId,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
             throw new NotImplementedException();
         }

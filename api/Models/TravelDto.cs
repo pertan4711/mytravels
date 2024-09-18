@@ -133,5 +133,7 @@ namespace MyTravels.API.Models
         }
 
         public ICollection<TravelDto>? SubTravels { get; set; } = new List<TravelDto>();
+
+        public int TravelId { get; set; }
     }
 }

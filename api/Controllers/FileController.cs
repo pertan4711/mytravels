@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using MyTravels.API.Services;
+using System.Text.Json;
 
 namespace MyTravels.API.Controllers
 {
@@ -77,11 +78,14 @@ namespace MyTravels.API.Controllers
         /// <param name="travelId">ID for travel</param>
         /// <returns>File contents (images)</returns>
         [HttpGet("travels/{travelId}/medias")]
-        public async Task<ActionResult> GetFiles(int travelId)
+        public async Task<ActionResult> GetFiles(int travelId,
+            int pageNumber = 1,
+            int pageSize = 10)
         {
-            var medias = await _travelsRepository.GetMediaFromTravelAsync(travelId);
+            var (medias, paginationMetadata) = await _travelsRepository.GetMediaFromTravelAsync(travelId, pageNumber, pageSize);
 
             Response.Headers.Append("Access-Control-Allow-Origin", "*");
+            Response.Headers.Append("X-Pagination", JsonSerializer.Serialize(paginationMetadata));
 
             if (medias == null)
             {
@@ -89,13 +93,13 @@ namespace MyTravels.API.Controllers
             }
 
             var files = new List<FileContentResult>();
-            foreach (var media in medias)
+            foreach (var media in medias.Take(pageSize))
             {
                 if (media.Url != null)
                 {
                     if (!_fileExtensionContentTypeProvider.TryGetContentType(media.Url, out var contentType))
                     {
-                        contentType = "application/octet-stream";
+                        contentType = "application/octet-stream"; // catch all if contentTypeProvider cannot determine
                     }
 
                     var bytes = System.IO.File.ReadAllBytes(media.Url);
