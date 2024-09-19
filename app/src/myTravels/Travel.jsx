@@ -27,13 +27,15 @@ const Travel = (travel) => {
             console.log(error);
           }
         }
+
         return true;
       }
     };
+    
     if (travel !== null) {
       getTravelMedia(travel);
     }
-  }, [travel]);
+  }, []);
 
   return (
     <div className="row-md-4 mb-3">
@@ -52,15 +54,13 @@ const Travel = (travel) => {
 
       <h4 className="mt-3">Medias</h4>
       <div className="row">
-        {medias.map((m) => {
+        {medias.map((m) => (
           <div
-            id={m.id}
             style={{ width: "18rem", height: "18rem" }}
             key={"m" + m.id}
             className="col-lg-2 col-md-3 col-sm-4 m-1 p-2 card h-100 shadow"
           >
-            {/* <img
-              //src={`data:image/jpeg;base64, ${m.fileContents}`}
+            <img
               id={m.id}
               src={URL.createObjectURL(m.image)}
               className="card-img-top"
@@ -70,14 +70,14 @@ const Travel = (travel) => {
                 height: "auto",
                 width: "auto",
               }}
-            /> */}
+            />
             <div className="card-footer">
               <div className="small text-muted">
-                m{m.id}: {m.url}
+                {m.url.split("\\").pop()}
               </div>
             </div>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
 
       {travel.travel.subTravels && (
