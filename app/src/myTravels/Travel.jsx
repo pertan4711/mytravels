@@ -14,7 +14,7 @@ const Travel = (travel) => {
             const response = await axios.get(fetchUrl, {
               responseType: "blob",
             });
-            setMedias([
+            setMedias((medias) => [
               ...medias,
               {
                 id: m.id,
@@ -31,7 +31,7 @@ const Travel = (travel) => {
         return true;
       }
     };
-    
+
     if (travel !== null) {
       getTravelMedia(travel);
     }
