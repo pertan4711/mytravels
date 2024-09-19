@@ -8,7 +8,7 @@ import Travel from "./Travel";
 const ShowTravels = () => {
   const [travels, setTravels] = useState([]);
   const [viewTravelStyle, setViewTravelStyle] = useState(false); // false = table; true = text
-  const [includeSubTravels, setIncludeSubTravels] = useState(false);
+  const [includeSubTravels, setIncludeSubTravels] = useState(true);
   const [selectedTravel, setSelectedTravel] = useState();
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const ShowTravels = () => {
             id="cbIncludeSubs"
             type="checkbox"
             className="form-check-input"
+            checked={includeSubTravels}
             onChange={(e) => {
               setIncludeSubTravels(e.target.checked);
             }}
