@@ -11,7 +11,7 @@ const InputTravelForm = ({ addTravel }) => {
   const change = (e) =>
     setTravel({ ...travel, [e.target.name]: e.target.value });
 
-  const saveTravel = (e) => {
+  const  saveTravel = (e) => {
     e.preventDefault();
     addTravel(travel);
   };
@@ -22,7 +22,7 @@ const InputTravelForm = ({ addTravel }) => {
         
         <div className="form-group">
           <label htmlFor="name" className="form-label">
-            Namn pÃ¥ resa:
+            Namn p&aring; resa:
           </label>
           <input
             id="name"

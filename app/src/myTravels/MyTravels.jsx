@@ -2,22 +2,31 @@ import axios from "./axios";
 import React, { useState, useEffect } from "react";
 import Banner from "./Banner";
 import TravelList from "./TravelList";
-//import InputTravelForm from "./InputTravelForm";
+import InputTravelForm from "./InputTravelForm";
 import Travel from "./Travel";
 
 const ShowTravels = () => {
   const [travels, setTravels] = useState([]);
   const [viewTravelStyle, setViewTravelStyle] = useState(false); // false = table; true = text
   const [includeSubTravels, setIncludeSubTravels] = useState(true);
-  const [selectedTravel, setSelectedTravel] = useState();
+  const [selectedTravel, setSelectedTravel] = useState({ error: false, state: ''});
+  //const [errorState, setErrorState] = useState();
 
   useEffect(() => {
     const getTravels = async () => {
       const fetchUrl =
         "travels?includeSubTravels=" + includeSubTravels + "&pageSize=50";
-      const resp = await axios.get(fetchUrl);
-      setTravels(resp.data);
-      return resp;
+        try {
+          const resp = await axios.get(fetchUrl);
+          setTravels(resp.data);
+          //setErrorState({ error:false, state:'' });
+          return true
+        } catch (error) {
+          console.log(error);
+          // setErrorState({ error:true, state:error });
+          // console.log(errorState);
+        }
+      return false;
     };
     getTravels();
   }, [includeSubTravels]);
@@ -28,8 +37,10 @@ const ShowTravels = () => {
     try {
       const resp = await axios.post(postUrl, newTravel);
       console.log(resp);
+      //setErrorState({ error:false, state:'' });
     } catch (error) {
       console.log(error);
+      //setErrorState({ error:true, state:error });
     }
 
     setTravels([...travels, newTravel]);
@@ -48,9 +59,9 @@ const ShowTravels = () => {
         </div>
       </div>
 
-      {/* <div className="row">
-        <InputTravelForm props={setTravels} />
-      </div> */}
+      <div className="row">
+        <InputTravelForm addTravel={setTravels} />
+      </div>
 
       <div className="row mb-5 border col-4 p-2">
         <div className="form-check">

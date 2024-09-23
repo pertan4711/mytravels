@@ -1,8 +1,36 @@
 import React, { useEffect, useState } from "react";
 import axios from "./axios";
+import FileDropZone from "./FileDropZone";
 
 const Travel = (travel) => {
   const [medias, setMedias] = useState([]); // multiple pics
+
+  const onMyFileUpload = (files) => {
+    console.log("fileupload" + files);
+    let fileCount = 0;
+    let rows = [];
+
+    // Add visual confirmation of added files
+    for (const file of files) {
+      const filerow =
+        `<tr>
+          <td class="small">
+            ${file.name}
+          </td>
+          <td class="small">
+            ${file.comment}
+          </td>
+          <td class="small">
+            ${file.size}
+          </td>
+        <tr>`;
+
+      rows.append(filerow);
+      fileCount++;
+    }
+
+    return (fileCount, rows);
+  };
 
   // Fetching one image at a time as a blob
   useEffect(() => {
@@ -49,7 +77,10 @@ const Travel = (travel) => {
             <b>period:</b> {travel.travel.start?.split("T")[0]}
           </>
         )}{" "}
-        - {travel.travel.end && <>{travel.travel.end?.split("T")[0]}</>}
+        - {travel.travel.end && 
+            <>
+              {travel.travel.end?.split("T")[0]}
+            </>}
       </div>
 
       <h4 className="mt-3">Medias</h4>
@@ -72,9 +103,7 @@ const Travel = (travel) => {
               }}
             />
             <div className="card-footer">
-              <div className="small text-muted">
-                {m.url.split("\\").pop()}
-              </div>
+              <div className="small text-muted">{m.url.split("\\").pop()}</div>
             </div>
           </div>
         ))}
@@ -90,6 +119,8 @@ const Travel = (travel) => {
           </ul>
         </>
       )}
+
+      <FileDropZone onFileUpload={onMyFileUpload} />
     </div>
   );
 };
