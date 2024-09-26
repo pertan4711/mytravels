@@ -127,6 +127,8 @@ namespace MyTravels.API.AddControllers
         {
             var createTravel = _mapper.Map<Travel>(travel);
 
+            Response.Headers.Append("Access-Control-Allow-Origin", "*");
+
             await _travelsRepository.AddTravelAsync(createTravel);
             await _travelsRepository.SaveChangesAsync();
 

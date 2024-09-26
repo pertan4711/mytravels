@@ -15,7 +15,7 @@ namespace MyTravels.API.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.25");
+            modelBuilder.HasAnnotation("ProductVersion", "8.0.8");
 
             modelBuilder.Entity("MyTravels.API.Entities.Media", b =>
                 {
@@ -25,11 +25,6 @@ namespace MyTravels.API.Migrations
 
                     b.Property<string>("Description")
                         .HasMaxLength(2000)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("TravelId")
@@ -45,13 +40,12 @@ namespace MyTravels.API.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Media", (string)null);
+                    b.ToTable("Media");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "IMG-20210215-WA0017",
                             TravelId = 1,
                             Type = "jpeg",
                             Url = "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0017.jpg"
@@ -59,7 +53,6 @@ namespace MyTravels.API.Migrations
                         new
                         {
                             Id = 2,
-                            Name = "Dsc344",
                             TravelId = 2,
                             Type = "jpeg",
                             Url = "\\\\pertanqnap\\Multimedia\\eget\\2021\\01 Maldiverna\\Daniellas mobil\\IMG-20210215-WA0017.jpg"
@@ -94,7 +87,7 @@ namespace MyTravels.API.Migrations
 
                     b.HasIndex("TravelId");
 
-                    b.ToTable("Travels", (string)null);
+                    b.ToTable("Travels");
 
                     b.HasData(
                         new

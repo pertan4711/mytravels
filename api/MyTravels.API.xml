@@ -168,6 +168,18 @@
             <param name="travel">TravelForCreationDto specifying a new travel</param>
             <returns>Call to get the newly created travel</returns>
         </member>
+        <member name="T:MyTravels.API.Migrations.functional_v0_1">
+            <inheritdoc />
+        </member>
+        <member name="M:MyTravels.API.Migrations.functional_v0_1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MyTravels.API.Migrations.functional_v0_1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:MyTravels.API.Migrations.functional_v0_1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:MyTravels.API.Models.TravelDto">
             <summary>
             A DTO for a travel
