@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "./axios";
 import FileDropZone from "./FileDropZone";
 
-const Travel = (travel) => {
+const Travel = ({ travel, setSelectedCallback }) => {
   const [medias, setMedias] = useState([]); // multiple pics
 
   const onMyFileUpload = (files) => {
@@ -12,8 +12,7 @@ const Travel = (travel) => {
 
     // Add visual confirmation of added files
     for (const file of files) {
-      const filerow =
-        `<tr>
+      const filerow = `<tr>
           <td class="small">
             ${file.name}
           </td>
@@ -29,14 +28,14 @@ const Travel = (travel) => {
       fileCount++;
     }
 
-    return (fileCount, rows);
+    return fileCount, rows;
   };
 
   // Fetching one image at a time as a blob
   useEffect(() => {
     const getTravelMedia = async (t) => {
-      if (t.travel.media) {
-        for (const m of t.travel.media) {
+      if (t.media) {
+        for (const m of t.media) {
           const fetchUrl = "file/" + m.id;
           try {
             const response = await axios.get(fetchUrl, {
@@ -68,19 +67,16 @@ const Travel = (travel) => {
   return (
     <div className="row-md-4 mb-3">
       <h4>
-        {travel.travel.name} (id:{travel.travel.id})
+        {travel.name} (id:{travel.id})
       </h4>
-      <div>{travel.travel.description}</div>
+      <div>{travel.description}</div>
       <div className="mt-3">
-        {travel.travel.start && (
+        {travel.start && (
           <>
-            <b>period:</b> {travel.travel.start?.split("T")[0]}
+            <b>period:</b> {travel.start?.split("T")[0]}
           </>
         )}{" "}
-        - {travel.travel.end && 
-            <>
-              {travel.travel.end?.split("T")[0]}
-            </>}
+        - {travel.end && <>{travel.end?.split("T")[0]}</>}
       </div>
 
       <h4 className="mt-3">Medias</h4>
@@ -109,12 +105,19 @@ const Travel = (travel) => {
         ))}
       </div>
 
-      {travel.travel.subTravels && (
+      {travel.subTravels && (
         <>
-          <div className="">Inneh&aring;ller delresor:</div>
+          <div className="row mt-5">
+            <h4>Inneh&aring;ller delresor:</h4>
+          </div>
           <ul>
-            {travel.travel.subTravels.map((sub) => (
-              <li key={"sub" + travel.travel.id + ":" + sub.id}>{sub.name}</li>
+            {travel.subTravels.map((sub) => (
+              <li
+                key={"sub" + travel.id + ":" + sub.id}
+                onClick={setSelectedCallback}
+              >
+                {sub.name}
+              </li>
             ))}
           </ul>
         </>

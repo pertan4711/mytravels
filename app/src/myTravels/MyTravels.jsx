@@ -95,7 +95,10 @@ const ShowTravels = () => {
       </div>
 
       {selectedTravel ? (
-        <Travel travel={selectedTravel} />
+        <Travel
+          travel={selectedTravel}
+          setSelectedCallback={setSelectedTravel}
+        />
       ) : (
         <TravelList
           travels={travels}

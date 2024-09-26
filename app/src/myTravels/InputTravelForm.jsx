@@ -7,11 +7,12 @@ const InputTravelForm = ({ addTravel }) => {
     start: "",
     end: "",
   });
+
   // computed property name
   const change = (e) =>
     setTravel({ ...travel, [e.target.name]: e.target.value });
 
-  const  saveTravel = (e) => {
+  const saveTravel = (e) => {
     e.preventDefault();
     addTravel(travel);
   };
@@ -19,7 +20,6 @@ const InputTravelForm = ({ addTravel }) => {
   return (
     <div className="container">
       <form className="" onSubmit={saveTravel}>
-        
         <div className="form-group">
           <label htmlFor="name" className="form-label">
             Namn p&aring; resa:

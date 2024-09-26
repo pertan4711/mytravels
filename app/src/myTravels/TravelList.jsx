@@ -1,22 +1,24 @@
 import React from "react";
 
-const TravelList = ({ travels, listStyle, includeSubTravels, selectTravel }) => {
-
+const TravelList = ({
+  travels,
+  listStyle,
+  includeSubTravels,
+  selectTravel,
+}) => {
   const countMedia = (travel) => {
-    let mediaCount = (travel.media != null) ? travel.media.length : 0;
-    travel.subTravels?.forEach(subTravel => {
+    let mediaCount = travel.media != null ? travel.media.length : 0;
+    travel.subTravels?.forEach((subTravel) => {
       mediaCount = mediaCount + subTravel.media.length;
-    }); 
+    });
     return mediaCount;
-  }
+  };
 
   return (
     <div className="container-fluid row">
       {travels &&
         listStyle &&
-        travels.map((travel) => (
-          <TravelText key={travel.id} {...travel} />
-        ))}
+        travels.map((travel) => <TravelText key={travel.id} {...travel} />)}
 
       {travels && !listStyle && includeSubTravels && (
         <div>
@@ -99,7 +101,7 @@ const TravelText = (travel) => {
         ))}
       {travel.subTravels && (
         <>
-          <div className="">InnehÃ¥ller delresor:</div>
+          <div className="">Inneh&aring;ller delresor:</div>
           <ul>
             {travel.subTravels.map((sub) => (
               <li key={"sub" + travel.id + ":" + sub.id}>{sub.name}</li>
