@@ -9,23 +9,23 @@ const ShowTravels = () => {
   const [travels, setTravels] = useState([]);
   const [viewTravelStyle, setViewTravelStyle] = useState(false); // false = table; true = text
   const [includeSubTravels, setIncludeSubTravels] = useState(true);
-  const [selectedTravel, setSelectedTravel] = useState({ error: false, state: ''});
-  //const [errorState, setErrorState] = useState();
+  const [selectedTravel, setSelectedTravel] = useState();
+  const [errorState, setErrorState] = useState({ error: false, state: "" });
 
   useEffect(() => {
     const getTravels = async () => {
       const fetchUrl =
         "travels?includeSubTravels=" + includeSubTravels + "&pageSize=50";
-        try {
-          const resp = await axios.get(fetchUrl);
-          setTravels(resp.data);
-          //setErrorState({ error:false, state:'' });
-          return true
-        } catch (error) {
-          console.log(error);
-          // setErrorState({ error:true, state:error });
-          // console.log(errorState);
-        }
+      try {
+        const resp = await axios.get(fetchUrl);
+        setTravels(resp.data);
+        setErrorState({ error: false, state: "" });
+        return true;
+      } catch (error) {
+        console.log(error);
+        setErrorState({ error: true, state: error });
+        console.log(errorState);
+      }
       return false;
     };
     getTravels();
@@ -37,10 +37,10 @@ const ShowTravels = () => {
     try {
       const resp = await axios.post(postUrl, newTravel);
       console.log(resp);
-      //setErrorState({ error:false, state:'' });
+      setErrorState({ error: false, state: "" });
     } catch (error) {
       console.log(error);
-      //setErrorState({ error:true, state:error });
+      setErrorState({ error: true, state: error });
     }
 
     setTravels([...travels, newTravel]);
