@@ -168,6 +168,13 @@
             <param name="travel">TravelForCreationDto specifying a new travel</param>
             <returns>Call to get the newly created travel</returns>
         </member>
+        <member name="M:MyTravels.API.AddControllers.TravelController.DeleteTravel(System.Int32)">
+            <summary>
+            Delete a specifik travel and all medias associated with it
+            </summary>
+            <param name="travelId">Travel identity</param>
+            <returns>No content</returns>
+        </member>
         <member name="T:MyTravels.API.Migrations.functional_v0_1">
             <inheritdoc />
         </member>

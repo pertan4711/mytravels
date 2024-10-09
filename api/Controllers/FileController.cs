@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.StaticFiles;
 using MyTravels.API.Services;
@@ -12,7 +13,7 @@ namespace MyTravels.API.Controllers
     [ApiController]
     //[Authorize]
     [ApiVersion("0.1")]
-    [Route("api/v{version:apiVersion}/file")]
+    [Route("api/file")]
     public class FileController : ControllerBase
     {
         private readonly FileExtensionContentTypeProvider _fileExtensionContentTypeProvider;

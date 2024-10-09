@@ -4,14 +4,15 @@ namespace MyTravels.API.Models
 {
     public class MediaForCreationDto
     {
-        [Required(ErrorMessage = "You should provide a NAME value")] // Custom error message
         [MaxLength(50)]
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; } = string.Empty;
         
         [MaxLength(2000)]
         public string? Description { get; set; }
-        
-        public string? Url { get; set; }
+
+        [Required(ErrorMessage = "You should provide a Url value")] // Custom error message
+        public string Url { get; set; } = string.Empty;
+
         public string? Type { get; set; }
     }
 }

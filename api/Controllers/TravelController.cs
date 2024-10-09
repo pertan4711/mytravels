@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -15,7 +16,7 @@ namespace MyTravels.API.AddControllers
     [ApiController]
     //[Authorize]
     [ApiVersion("0.1")]
-    [Route("api/v{version:apiVersion}/travels")]
+    [Route("api/travels")]
     public class TravelController : ControllerBase
     {
         private readonly ILogger<TravelController> _logger;
@@ -144,6 +145,11 @@ namespace MyTravels.API.AddControllers
         }
 
 
+        /// <summary>
+        /// Delete a specifik travel and all medias associated with it
+        /// </summary>
+        /// <param name="travelId">Travel identity</param>
+        /// <returns>No content</returns>
         [HttpDelete]
         public async Task<ActionResult> DeleteTravel(int travelId)
         {

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using Asp.Versioning;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace MyTravels.API.Controllers
     //[Authorize]
     [ApiVersion("0.1")]
     [ApiVersion("0.2")]
-    [Route("api/v{version:apiVersion}")]
+    [Route("api")]
     public class MediaController : ControllerBase
     {
         private readonly ILogger<MediaController> _logger;
