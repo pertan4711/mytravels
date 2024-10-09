@@ -11,6 +11,7 @@ const FileDropZone = ({ onFileUpload }) => {
 
   const handleDragOver = (e) => {
     e.preventDefault();
+    setIsDragging(true);
   };
 
   const handleDragLeave = (e) => {
@@ -25,9 +26,9 @@ const FileDropZone = ({ onFileUpload }) => {
 
   return (
     <>
-      <h2>File Drag & Drop</h2>
+      <h2 className="mt-5">File Drag & Drop</h2>
       <div
-        id="dropZone"
+        id="dropzone"
         className={`border dropzone ${isDragging ? "dragging" : ""}`}
         onDragEnter={handleDragEnter}
         onDragOver={handleDragOver}

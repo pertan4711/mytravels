@@ -2,7 +2,7 @@ import React from "react";
 import ShowButtons from "./incrementCounter/ShowButtons";
 import GithubCards from "./githubCards/GithubCards";
 import ConditionalStyle from "./conditionalStyle/ConditionalStyle";
-import StarMatch from "./startMatchGame/StarMatch";
+import StarMatch from "./starMatchGame/StarMatch";
 import MathMLTutorial from "./mathML/MathElement";
 
 const GettingStarted = () => {

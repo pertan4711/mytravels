@@ -5,6 +5,20 @@ import FileDropZone from "./FileDropZone";
 const Travel = ({ travel, setSelectedCallback }) => {
   const [medias, setMedias] = useState([]); // multiple pics
 
+  // använd axios post för att skicka
+  const sendMedia = async (media) => {
+    const postUrl =
+      "travels/" + travel.id + "/media";
+    try {
+      const resp = await axios.post(postUrl, media);
+      // Kan vi få id-nummer här?
+      return resp;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Drop images and add them to a travel
   const onMyFileUpload = (files) => {
     console.log("fileupload" + files);
     let fileCount = 0;
@@ -12,21 +26,22 @@ const Travel = ({ travel, setSelectedCallback }) => {
 
     // Add visual confirmation of added files
     for (const file of files) {
-      const filerow = `<tr>
-          <td class="small">
-            ${file.name}
-          </td>
-          <td class="small">
-            ${file.comment}
-          </td>
-          <td class="small">
-            ${file.size}
-          </td>
-        <tr>`;
+      const media = {Name: file.url, Description: file.description, Url: file.url, Type: "jpeg"};
+      sendMedia(media);
+      
+      setMedias((medias) => [
+        ...medias,
+        {
+          id: media.id,
+          url: file.name,
+          description: file.name,
+          image: file,
+        },
+      ]);
 
-      rows.append(filerow);
       fileCount++;
     }
+
 
     return fileCount, rows;
   };
@@ -79,7 +94,7 @@ const Travel = ({ travel, setSelectedCallback }) => {
         - {travel.end && <>{travel.end?.split("T")[0]}</>}
       </div>
 
-      <h4 className="mt-3">Medias</h4>
+      {(medias.length > 0) && <h4 className="mt-3">Foton och filmer</h4>}
       <div className="row">
         {medias.map((m) => (
           <div
@@ -99,13 +114,13 @@ const Travel = ({ travel, setSelectedCallback }) => {
               }}
             />
             <div className="card-footer">
-              <div className="small text-muted">{m.url.split("\\").pop()}</div>
+              <div className="small text-muted">{m.url?.split("\\").pop()}</div>
             </div>
           </div>
         ))}
       </div>
 
-      {travel.subTravels && (
+      {travel.subTravels.length > 0 && (
         <>
           <div className="row mt-5">
             <h4>Inneh&aring;ller delresor:</h4>
