@@ -27,6 +27,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Travels.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Travels.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Asp.Versioning.Mvc" Version="8.1.0" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.10" />
